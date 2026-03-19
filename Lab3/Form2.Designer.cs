@@ -28,54 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            comboBox4 = new ComboBox();
             lblImie = new Label();
             lblNazwisko = new Label();
             lblWiek = new Label();
             lblStanowisko = new Label();
             btnZatwierdz = new Button();
             btnAnuluj = new Button();
+            cmbStanowisko = new ComboBox();
+            txtImie = new TextBox();
+            txtNazwisko = new TextBox();
+            txtWiek = new TextBox();
             SuspendLayout();
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(140, 32);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(212, 38);
-            comboBox1.TabIndex = 0;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(140, 106);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(212, 38);
-            comboBox2.TabIndex = 1;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(140, 204);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(212, 38);
-            comboBox3.TabIndex = 2;
-            // 
-            // comboBox4
-            // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(140, 289);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(212, 38);
-            comboBox4.TabIndex = 3;
             // 
             // lblImie
             // 
             lblImie.AutoSize = true;
-            lblImie.Location = new Point(526, 35);
+            lblImie.Location = new Point(526, 41);
             lblImie.Name = "lblImie";
             lblImie.Size = new Size(53, 30);
             lblImie.TabIndex = 4;
@@ -84,7 +52,7 @@
             // lblNazwisko
             // 
             lblNazwisko.AutoSize = true;
-            lblNazwisko.Location = new Point(526, 114);
+            lblNazwisko.Location = new Point(526, 123);
             lblNazwisko.Name = "lblNazwisko";
             lblNazwisko.Size = new Size(101, 30);
             lblNazwisko.TabIndex = 5;
@@ -116,6 +84,7 @@
             btnZatwierdz.TabIndex = 8;
             btnZatwierdz.Text = "Zatwierdź";
             btnZatwierdz.UseVisualStyleBackColor = true;
+            btnZatwierdz.Click += btnZatwierdz_Click;
             // 
             // btnAnuluj
             // 
@@ -125,40 +94,72 @@
             btnAnuluj.TabIndex = 9;
             btnAnuluj.Text = "Anuluj";
             btnAnuluj.UseVisualStyleBackColor = true;
+            btnAnuluj.Click += btnAnuluj_Click;
+            // 
+            // cmbStanowisko
+            // 
+            cmbStanowisko.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbStanowisko.FormattingEnabled = true;
+            cmbStanowisko.Items.AddRange(new object[] { "Programista", "Tester", "Manager" });
+            cmbStanowisko.Location = new Point(145, 297);
+            cmbStanowisko.Name = "cmbStanowisko";
+            cmbStanowisko.Size = new Size(212, 38);
+            cmbStanowisko.TabIndex = 3;
+            // 
+            // txtImie
+            // 
+            txtImie.Location = new Point(145, 41);
+            txtImie.Name = "txtImie";
+            txtImie.Size = new Size(175, 35);
+            txtImie.TabIndex = 10;
+            // 
+            // txtNazwisko
+            // 
+            txtNazwisko.Location = new Point(145, 123);
+            txtNazwisko.Name = "txtNazwisko";
+            txtNazwisko.Size = new Size(175, 35);
+            txtNazwisko.TabIndex = 11;
+            // 
+            // txtWiek
+            // 
+            txtWiek.Location = new Point(145, 212);
+            txtWiek.Name = "txtWiek";
+            txtWiek.Size = new Size(175, 35);
+            txtWiek.TabIndex = 12;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtWiek);
+            Controls.Add(txtNazwisko);
+            Controls.Add(txtImie);
             Controls.Add(btnAnuluj);
             Controls.Add(btnZatwierdz);
             Controls.Add(lblStanowisko);
             Controls.Add(lblWiek);
             Controls.Add(lblNazwisko);
             Controls.Add(lblImie);
-            Controls.Add(comboBox4);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Controls.Add(cmbStanowisko);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "Form2";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Form2";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private ComboBox comboBox4;
-        private Label lblImie;
-        private Label lblNazwisko;
-        private Label lblWiek;
-        private Label lblStanowisko;
         private Button btnZatwierdz;
         private Button btnAnuluj;
+        public Label lblImie;
+        public Label lblNazwisko;
+        public Label lblWiek;
+        public Label lblStanowisko;
+        public ComboBox cmbStanowisko;
+        public TextBox txtImie;
+        public TextBox txtNazwisko;
+        public TextBox txtWiek;
     }
 }

@@ -16,5 +16,27 @@ namespace Lab3
         {
             InitializeComponent();
         }
+
+        private void btnZatwierdz_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtImie.Text) || string.IsNullOrWhiteSpace(txtNazwisko.Text))
+            {
+                MessageBox.Show("Wypełnij imię i nazwisko!");
+                return;
+            }
+            if (cmbStanowisko.SelectedIndex == -1)
+            {
+                MessageBox.Show("Wybierz stanowisko z listy!");
+                return;
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnAnuluj_Click(object sender, EventArgs e)
+        {
+            this.DialogResult= DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

@@ -53,6 +53,7 @@
             btnDodaj.TabIndex = 1;
             btnDodaj.Text = "Dodaj";
             btnDodaj.UseVisualStyleBackColor = true;
+            btnDodaj.Click += btnDodaj_Click;
             // 
             // btnUsun
             // 
@@ -62,6 +63,7 @@
             btnUsun.TabIndex = 2;
             btnUsun.Text = "Usuń";
             btnUsun.UseVisualStyleBackColor = true;
+            btnUsun.Click += btnUsun_Click;
             // 
             // btnZapis
             // 
@@ -100,9 +102,9 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Button btnDodaj;
         private Button btnUsun;
         private Button btnZapis;
         private Button btnOdczyt;
+        public Button btnDodaj;
     }
 }
