@@ -1,4 +1,5 @@
 using System.Data;
+using System.IO;
 
 namespace Lab3
 {
@@ -51,6 +52,59 @@ namespace Lab3
             else
             {
                 MessageBox.Show("Najpierw zaznacz pracownika do usuniêcia!");
+            }
+        }
+
+        private void btnZapis_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Pliki CSV (*.csv)|*.csv";
+            sfd.Title = "Zapisz listê pracowników";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string csv = "ID,Imie,Nazwisko,Wiek,Stanowisko" + Environment.NewLine;
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    csv += string.Join(",", row.ItemArray) + Environment.NewLine;
+                }
+
+                File.WriteAllText(sfd.FileName, csv);
+                MessageBox.Show("Zapisano pomyœlnie na: " + sfd.FileName);
+            }
+        }
+
+        private void btnOdczyt_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Pliki CSV (*.csv)|*.csv";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string[] linie = File.ReadAllLines(ofd.FileName);
+
+                dataTable.Rows.Clear();
+
+                for (int i = 1; i < linie.Length; i++)
+                {
+                    string[] dane = linie[i].Split(',');
+
+                    dataTable.Rows.Add(dane);
+
+                    if (int.TryParse(dane[0], out int idZPliku))
+                    {
+                        if (idZPliku >= nextId)
+                        {
+                            nextId = idZPliku + 1;
+                        }
+                    }
+
+
+
+                }
+                MessageBox.Show("Dane wczytane poprawnie!");
+
             }
         }
     }
