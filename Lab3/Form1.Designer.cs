@@ -95,6 +95,7 @@
             btnSaveXml.TabIndex = 5;
             btnSaveXml.Text = "Zapisz do XML";
             btnSaveXml.UseVisualStyleBackColor = true;
+            btnSaveXml.Click += btnSaveXml_Click;
             // 
             // btnImportXml
             // 

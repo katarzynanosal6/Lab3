@@ -1,5 +1,6 @@
 using System.Data;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace Lab3
 {
@@ -103,9 +104,52 @@ namespace Lab3
 
 
                 }
-                MessageBox.Show("Dane wczytane poprawnie!");
+                MessageBox.Show("Dane wczytane poprawnie");
 
             }
         }
-    }
+
+        private void btnSaveXml_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Pliki XML (*.xml)|*.xml";
+            sfd.Title = "Zapisz dane jako XML"; 
+            
+            if (sfd.ShowDialog() == DialogResult.OK) 
+    {
+                try
+                {
+                    List<Osoba> lista = new List<Osoba>();
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows) 
+            {
+                        if (!row.IsNewRow) 
+                {
+                        
+                            lista.Add(new Osoba(
+                                row.Cells["Id"].Value != null ? Convert.ToInt32(row.Cells["Id"].Value) : 0,
+                                row.Cells["Imie"].Value?.ToString() ?? "",
+                                row.Cells["Nazwisko"].Value?.ToString() ?? "",
+                                row.Cells["Wiek"].Value != null ? Convert.ToInt32(row.Cells["Wiek"].Value) : 0,
+                                row.Cells["Stanowisko"].Value?.ToString() ?? ""
+                            ));
+                        }
+                    }
+
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<Osoba>)); 
+            using (StreamWriter sw = new StreamWriter(sfd.FileName)) 
+            {
+                        serializer.Serialize(sw, lista); 
+            }
+
+                    MessageBox.Show("Zapisano do XML"); 
+        }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Blad: " + ex.Message);
+                }
+            }
+        }
+
+        }
 }
