@@ -33,6 +33,8 @@
             btnUsun = new Button();
             btnZapis = new Button();
             btnOdczyt = new Button();
+            btnSaveXml = new Button();
+            btnImportXml = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -67,7 +69,7 @@
             // 
             // btnZapis
             // 
-            btnZapis.Location = new Point(120, 366);
+            btnZapis.Location = new Point(120, 386);
             btnZapis.Name = "btnZapis";
             btnZapis.Size = new Size(201, 40);
             btnZapis.TabIndex = 3;
@@ -77,7 +79,7 @@
             // 
             // btnOdczyt
             // 
-            btnOdczyt.Location = new Point(428, 366);
+            btnOdczyt.Location = new Point(428, 386);
             btnOdczyt.Name = "btnOdczyt";
             btnOdczyt.Size = new Size(193, 40);
             btnOdczyt.TabIndex = 4;
@@ -85,11 +87,31 @@
             btnOdczyt.UseVisualStyleBackColor = true;
             btnOdczyt.Click += btnOdczyt_Click;
             // 
+            // btnSaveXml
+            // 
+            btnSaveXml.Location = new Point(122, 324);
+            btnSaveXml.Name = "btnSaveXml";
+            btnSaveXml.Size = new Size(199, 40);
+            btnSaveXml.TabIndex = 5;
+            btnSaveXml.Text = "Zapisz do XML";
+            btnSaveXml.UseVisualStyleBackColor = true;
+            // 
+            // btnImportXml
+            // 
+            btnImportXml.Location = new Point(428, 324);
+            btnImportXml.Name = "btnImportXml";
+            btnImportXml.Size = new Size(190, 40);
+            btnImportXml.TabIndex = 6;
+            btnImportXml.Text = "Wczytaj z XML";
+            btnImportXml.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnImportXml);
+            Controls.Add(btnSaveXml);
             Controls.Add(btnOdczyt);
             Controls.Add(btnZapis);
             Controls.Add(btnUsun);
@@ -108,5 +130,7 @@
         private Button btnZapis;
         private Button btnOdczyt;
         public Button btnDodaj;
+        private Button btnSaveXml;
+        private Button btnImportXml;
     }
 }
