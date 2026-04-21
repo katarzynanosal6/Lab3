@@ -1,5 +1,6 @@
 using System.Data;
 using System.IO;
+using System.Text.Json;
 
 namespace Lab3
 {
@@ -105,6 +106,67 @@ namespace Lab3
                 }
                 MessageBox.Show("Dane wczytane poprawnie!");
 
+            }
+        }
+
+        private void btnSaveJson_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Pliki JSON (*.json)|*.json";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    List<Osoba> lista = new List<Osoba>();
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        lista.Add(new Osoba(
+                            Convert.ToInt32(row["ID"]),
+                            row["Imiê"].ToString(),
+                            row["Nazwisko"].ToString(),
+                            Convert.ToInt32(row["Wiek"]),
+                            row["Stanowisko"].ToString()
+                        ));
+                    }
+
+
+                    string jsonString = JsonSerializer.Serialize(lista, new JsonSerializerOptions { WriteIndented = true });
+                    File.WriteAllText(sfd.FileName, jsonString);
+
+                    MessageBox.Show("Zapisano pomyœlnie do JSON");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("B³¹d zapisu: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnLoadJson_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Pliki JSON (*.json)|*.json";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                   string jsonString = File.ReadAllText(ofd.FileName);
+            List<Osoba> wczytanaLista = JsonSerializer.Deserialize<List<Osoba>>(jsonString);
+
+                    dataTable.Rows.Clear();
+                    foreach (var o in wczytanaLista)
+                    {
+                        dataTable.Rows.Add(o.Id, o.Imie, o.Nazwisko, o.Wiek, o.Stanowisko);
+                        if (o.Id >= nextId) nextId = o.Id + 1;
+                    }
+                    MessageBox.Show("Dane wczytane z JSON");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("B³¹d odczytu: " + ex.Message);
+                }
             }
         }
     }

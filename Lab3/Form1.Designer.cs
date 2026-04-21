@@ -33,6 +33,8 @@
             btnUsun = new Button();
             btnZapis = new Button();
             btnOdczyt = new Button();
+            btnSaveJson = new Button();
+            btnLoadJson = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -67,7 +69,7 @@
             // 
             // btnZapis
             // 
-            btnZapis.Location = new Point(120, 366);
+            btnZapis.Location = new Point(116, 387);
             btnZapis.Name = "btnZapis";
             btnZapis.Size = new Size(201, 40);
             btnZapis.TabIndex = 3;
@@ -77,7 +79,7 @@
             // 
             // btnOdczyt
             // 
-            btnOdczyt.Location = new Point(428, 366);
+            btnOdczyt.Location = new Point(417, 387);
             btnOdczyt.Name = "btnOdczyt";
             btnOdczyt.Size = new Size(193, 40);
             btnOdczyt.TabIndex = 4;
@@ -85,11 +87,33 @@
             btnOdczyt.UseVisualStyleBackColor = true;
             btnOdczyt.Click += btnOdczyt_Click;
             // 
+            // btnSaveJson
+            // 
+            btnSaveJson.Location = new Point(120, 333);
+            btnSaveJson.Name = "btnSaveJson";
+            btnSaveJson.Size = new Size(197, 40);
+            btnSaveJson.TabIndex = 5;
+            btnSaveJson.Text = "Zapis do JSON";
+            btnSaveJson.UseVisualStyleBackColor = true;
+            btnSaveJson.Click += btnSaveJson_Click;
+            // 
+            // btnLoadJson
+            // 
+            btnLoadJson.Location = new Point(417, 333);
+            btnLoadJson.Name = "btnLoadJson";
+            btnLoadJson.Size = new Size(193, 40);
+            btnLoadJson.TabIndex = 6;
+            btnLoadJson.Text = "Odczyt z JSON";
+            btnLoadJson.UseVisualStyleBackColor = true;
+            btnLoadJson.Click += btnLoadJson_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnLoadJson);
+            Controls.Add(btnSaveJson);
             Controls.Add(btnOdczyt);
             Controls.Add(btnZapis);
             Controls.Add(btnUsun);
@@ -108,5 +132,7 @@
         private Button btnZapis;
         private Button btnOdczyt;
         public Button btnDodaj;
+        private Button btnSaveJson;
+        private Button btnLoadJson;
     }
 }
