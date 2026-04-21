@@ -113,22 +113,22 @@ namespace Lab3
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Pliki XML (*.xml)|*.xml";
-            sfd.Title = "Zapisz dane jako XML"; 
-            
-            if (sfd.ShowDialog() == DialogResult.OK) 
-    {
+            sfd.Title = "Zapisz dane jako XML";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
                 try
                 {
                     List<Osoba> lista = new List<Osoba>();
 
-                    foreach (DataGridViewRow row in dataGridView1.Rows) 
-            {
-                        if (!row.IsNewRow) 
-                {
-                        
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+
                             lista.Add(new Osoba(
                                 row.Cells["Id"].Value != null ? Convert.ToInt32(row.Cells["Id"].Value) : 0,
-                                row.Cells["Imie"].Value?.ToString() ?? "",
+                                row.Cells["Imiê"].Value?.ToString() ?? "",
                                 row.Cells["Nazwisko"].Value?.ToString() ?? "",
                                 row.Cells["Wiek"].Value != null ? Convert.ToInt32(row.Cells["Wiek"].Value) : 0,
                                 row.Cells["Stanowisko"].Value?.ToString() ?? ""
@@ -136,14 +136,14 @@ namespace Lab3
                         }
                     }
 
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<Osoba>)); 
-            using (StreamWriter sw = new StreamWriter(sfd.FileName)) 
-            {
-                        serializer.Serialize(sw, lista); 
-            }
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<Osoba>));
+                    using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                    {
+                        serializer.Serialize(sw, lista);
+                    }
 
-                    MessageBox.Show("Zapisano do XML"); 
-        }
+                    MessageBox.Show("Zapisano do XML");
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Blad: " + ex.Message);
@@ -151,5 +151,42 @@ namespace Lab3
             }
         }
 
+        private void btnImportXml_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Pliki XML (*.xml)|*.xml";
+            ofd.Title = "Wybierz plik XML do wczytania";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<Osoba>));
+                    List<Osoba> wczytanaLista;
+
+                    using (StreamReader sr = new StreamReader(ofd.FileName))
+                    {
+                        wczytanaLista = (List<Osoba>)serializer.Deserialize(sr);
+                    }
+
+                    
+                    dataTable.Rows.Clear();
+
+                    foreach (var osoba in wczytanaLista)
+                    {
+                        dataTable.Rows.Add(osoba.Id, osoba.Imie, osoba.Nazwisko, osoba.Wiek, osoba.Stanowisko);
+
+                        
+                        if (osoba.Id >= nextId) nextId = osoba.Id + 1;
+                    }
+
+                    MessageBox.Show("Dane wczytane poprawnie z XML");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("B³¹d podczas odczytu XML: " + ex.Message);
+                }
+            }
         }
+    }
 }

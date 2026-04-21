@@ -73,7 +73,7 @@
             btnZapis.Name = "btnZapis";
             btnZapis.Size = new Size(201, 40);
             btnZapis.TabIndex = 3;
-            btnZapis.Text = "Zapis do .csv";
+            btnZapis.Text = "Zapisz do .csv";
             btnZapis.UseVisualStyleBackColor = true;
             btnZapis.Click += btnZapis_Click;
             // 
@@ -83,7 +83,7 @@
             btnOdczyt.Name = "btnOdczyt";
             btnOdczyt.Size = new Size(193, 40);
             btnOdczyt.TabIndex = 4;
-            btnOdczyt.Text = "Odczyt z .csv";
+            btnOdczyt.Text = "Wczytaj z .csv";
             btnOdczyt.UseVisualStyleBackColor = true;
             btnOdczyt.Click += btnOdczyt_Click;
             // 
@@ -105,6 +105,7 @@
             btnImportXml.TabIndex = 6;
             btnImportXml.Text = "Wczytaj z XML";
             btnImportXml.UseVisualStyleBackColor = true;
+            btnImportXml.Click += btnImportXml_Click;
             // 
             // Form1
             // 
